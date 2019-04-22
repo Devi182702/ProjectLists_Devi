@@ -1,0 +1,71 @@
+<h3>Employee Visa Record</h3>
+<hr />
+
+<form #form="ngForm" novalidate (submit)="onSave(form)">
+  <input type="hidden" name="VisaRequsitionId" />
+
+  <div class="form-group row">
+    <label class="control-label col-md-12">Employee ID</label>
+    <div class="col-md-4">
+      <input class="form-control" type="number" name="EmployeeId" #EmployeeId="ngModel" [(ngModel)]="formData.EmployeeId"
+             placeholder="Enter Employee ID" required>
+      <div>
+        <span class="text-danger" *ngIf="EmployeeId.invalid">
+          EmployeeId is required.
+        </span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-md-12">Visa For the Country</label>
+    <div class="col-md-4">
+      <select class="form-control" name="CountryName" #CountryName="ngModel" [(ngModel)]="formData.CountryName" required>
+        <option value="AU" selected>AUSTRALIA</option>
+        <option value="BR">BRAZIL</option>
+        <option value="CA">CANADA</option>
+        <option value="DK">DENMARK</option>
+        <option value="EG">EGYPT</option>
+        <option value="FR">FRANCE</option>
+        <option value="DE">GERMANY</option>
+        <option value="HK">HONGKONG</option>
+        <option value="IN">INDIA</option>
+        <option value="US">UNITED STATES</option>
+      </select>
+      <div>
+        <span class="text-danger" *ngIf="CountryName.invalid">
+          Country is required.
+        </span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-md-12">Visa Issue Date</label>
+    <div class="col-md-4">      
+      <input class="form-control" name="VisaIssueDate" type="date" #VisaIssueDate="ngModel" [(ngModel)]="formData.VisaIssueDate" placeholder="Enter Visa Issue Date">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-md-12">Visa Expiry Date</label>
+    <div class="col-md-4">
+      <input class="form-control" type="date" name="VisaExpiryDate" #VisaExpiryDate="ngModel" [(ngModel)]="formData.VisaExpiryDate" placeholder="Enter Visa Expiry Date">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="control-label col-md-12">Visa Status</label>
+    <div class="col-md-4">
+      <select class="form-control" name="VisaStatus" #VisaStatus="ngModel" [(ngModel)]="formData.VisaStatus">        
+        <option value="Active">Active</option>
+        <option value="InActive">InActive</option>
+      </select>
+    </div>   
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid" class="btn btn-default">Save</button>
+    <button class="btn" (click)="cancel()">Cancel</button>
+  </div>
+</form>

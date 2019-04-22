@@ -1,0 +1,35 @@
+
+<h1>Visa Details List</h1>
+
+<p *ngIf="!visadetails"><em>Loading...</em></p>
+
+<p>
+  <a [routerLink]="['/add-visa/',0]">Create New</a>
+</p>
+<table class='table' *ngIf="visadetails">
+  <thead>
+    <tr>
+      <th>Visa Requsition Id</th>
+      <th>Employee Id</th>
+      <th>Visa For Country</th>
+      <th>Visa Issue Date</th>
+      <th>Visa Expiry Date</th>
+      <th>Visa Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let visadetail of visadetails">
+      <td>{{ visadetail.VisaRequsitionId }}</td>
+      <td>{{ visadetail.EmployeeId }}</td>
+      <td>{{ visadetail.CountryName }}</td>
+      <td>{{ visadetail.VisaIssueDate | date:'longDate' }}</td>
+      <td>{{ visadetail.VisaExpiryDate | date:'longDate'}}</td>
+      <td>{{ visadetail.VisaStatus }}</td>
+      <td>
+        <a [routerLink]="['/add-visa/', visadetail.VisaRequsitionId]">Edit</a> |
+        <a [routerLink]="" (click)="delete(visadetail.VisaRequsitionId)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
