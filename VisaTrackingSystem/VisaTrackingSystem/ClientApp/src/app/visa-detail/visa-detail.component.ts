@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Router,ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-visa-detail',
@@ -22,12 +22,9 @@ export class VisaDetailComponent {
       this.visadetails = result;
     }, error => console.error(error));
   }
-  delete(visaRequistionId) {   
-    console.info(visaRequistionId);
-    console.log(visaRequistionId);
+  delete(visaRequistionId) {           
     var confirmMsg = confirm("Do you want to delete the Visa Requsition ID:" + visaRequistionId);
-    if (confirmMsg) {
-      console.log(visaRequistionId);     
+    if (confirmMsg) {         
       this.httpClient.delete(this.baseUrl + 'api/VisaDetails/Delete/' + visaRequistionId).subscribe(
         result => {
           alert("Record Deleted Successfully");

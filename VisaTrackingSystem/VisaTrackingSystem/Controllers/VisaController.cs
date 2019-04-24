@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace VisaTrackingSystem.Controllers
 {
     [Route("api/VisaDetails/")]
@@ -20,24 +19,11 @@ namespace VisaTrackingSystem.Controllers
         // GET: api/<controller>
         [HttpGet]
         [Route("Index")]
+        [Produces("application/json")]
         public IEnumerable<VisaDetails> Index() 
         {
-            try
-            {
-                return dataAccessObj.GetAllVisa();
-            }
-            catch(ArgumentNullException ae)
-            {
-                throw ae;
-            }
-            catch (ArgumentException a)
-            {
-                throw a;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            this.ControllerContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return dataAccessObj.GetAllVisa();
         }
 
         // GET: api/<controller>
@@ -45,36 +31,19 @@ namespace VisaTrackingSystem.Controllers
         [Route("Get/{visaRequsitionID}")]
         public VisaDetails Get(int visaRequsitionID)
         {
-            try
+            if (visaRequsitionID != 0)
             {
-                if (visaRequsitionID != 0)
+                var visaDetail = dataAccessObj.GetVisaById(visaRequsitionID);
+                if (visaDetail == null)
                 {
-                    var visaDetail = dataAccessObj.GetVisaById(visaRequsitionID);
-                    if (visaDetail == null)
-                    {
-                        throw new Exception("Was not able to retrive the record for the given ID:" + visaRequsitionID);
-                    }
-                    return visaDetail;
+                    throw new Exception("Was not able to retrive the record for the given ID:" + visaRequsitionID);
                 }
-                else
-                {
-                    throw new ArgumentNullException("VisaRequsitionID cannot be 0 while Get Call.");
-                }
-               
+                return visaDetail;
             }
-            catch(ArgumentNullException ae)
+            else
             {
-                throw ae;
+                throw new ArgumentNullException("VisaRequsitionID cannot be 0 while Get Call.");
             }
-            catch (ArgumentException a)
-            {
-                throw a;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
         }
 
         // POST api/<controller>
@@ -83,18 +52,7 @@ namespace VisaTrackingSystem.Controllers
         [Consumes("application/json")]
         public bool Post([FromBody]VisaDetails visaDetails)
         {
-            try
-            {
-                return dataAccessObj.AddVisa(visaDetails);
-            }
-            catch(ArgumentException ae)
-            {
-                throw ae;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return dataAccessObj.AddVisa(visaDetails);           
         }
                 
         // PUT api/<controller>/5
@@ -102,18 +60,7 @@ namespace VisaTrackingSystem.Controllers
         [Route("Update")]
         public bool Put([FromBody]VisaDetails visaDetails)
         {
-            try
-            {
-                return dataAccessObj.UpdateVisa(visaDetails);
-            }
-            catch (ArgumentException ae)
-            {
-                throw ae;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+             return dataAccessObj.UpdateVisa(visaDetails);
         }
 
         // DELETE api/<controller>/5
@@ -121,22 +68,7 @@ namespace VisaTrackingSystem.Controllers
         [Route("Delete/{visaRequsitionId}")]
         public bool Delete(int visaRequsitionId)
         {
-            try
-            {
-                return dataAccessObj.Delete(visaRequsitionId);
-            }
-            catch(ArgumentNullException a)
-            {
-                throw a;
-            }
-            catch(ArgumentException ae)
-            {
-                throw ae;
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            return dataAccessObj.Delete(visaRequsitionId);
         }
     }
 }

@@ -9,15 +9,16 @@ namespace VisaTrackingSystem.Models
     {
         VisaTrackingSystemDBContext dbContext = new VisaTrackingSystemDBContext();
         
-        public override IEnumerable<VisaDetails> GetAllVisa()
+        public override List<VisaDetails> GetAllVisa()
         {
             try
-            {                
-                return (dbContext.VisaDetails != null && dbContext.VisaDetails.Count() > 0) ? 
-                            dbContext.VisaDetails.ToList() : Enumerable.Empty<VisaDetails>();                
+            {
+                return (dbContext.VisaDetails != null && dbContext.VisaDetails.Count() > 0) ?
+                            dbContext.VisaDetails.ToList() : new List<VisaDetails>();
             }
             catch(ArgumentNullException ae)
             {
+                //log it in .log file
                 throw ae;
             }
             catch (ArgumentException a)
@@ -103,17 +104,11 @@ namespace VisaTrackingSystem.Models
         {
             try
             {
-                if (visaRequsitionId != 0)
-                {
                     VisaDetails visaDetails = find(dbContext, visaRequsitionId);
                     dbContext.VisaDetails.Remove(visaDetails);
                     dbContext.SaveChanges();
                     return true;
-                }
-                else
-                {
-                    throw new ArgumentNullException("The VisaRequistionID was 0,so was not able to delete a record.");
-                }
+               
             }
             catch(Exception e)
             {

@@ -27,18 +27,27 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Dal\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Dal\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Dal\**" />
+    <None Remove="Dal\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\src\app\add-visa\add-visa.component.ts" />
+    <None Remove="ClientApp\src\app\get-visa-detail\get-visa-detail.component.ts" />
     <None Remove="ClientApp\src\app\visa-detail\visa-detail.component.ts" />
     <None Remove="ClientApp\src\app\visa-detail\visa-detail.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\add-visa\add-visa.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\get-visa-detail\get-visa-detail.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\visa-detail\visa-detail.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\visa-detail\visa-detail.model.ts" />
   </ItemGroup>

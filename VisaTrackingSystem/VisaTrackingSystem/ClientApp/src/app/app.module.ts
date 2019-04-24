@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component'; */
 import { VisaDetailComponent } from './visa-detail/visa-detail.component';
 import { AddVisaComponent } from './add-visa/add-visa.component';
+import { GetVisaDetailComponent } from './get-visa-detail/get-visa-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddVisaComponent } from './add-visa/add-visa.component';
     /**CounterComponent,
     FetchDataComponent,*/
     VisaDetailComponent,
-    AddVisaComponent
+    AddVisaComponent,
+    GetVisaDetailComponent
   ],
   imports: [    
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),    
@@ -28,10 +30,9 @@ import { AddVisaComponent } from './add-visa/add-visa.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      /** { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent }, */
       { path: 'visa-detail', component: VisaDetailComponent },
-      { path: 'add-visa/:id', component: AddVisaComponent },      
+      { path: 'add-visa/:id', component: AddVisaComponent },
+      { path: 'get-visa-detail/:id', component: GetVisaDetailComponent },      
     ])
   ],
   providers: [],

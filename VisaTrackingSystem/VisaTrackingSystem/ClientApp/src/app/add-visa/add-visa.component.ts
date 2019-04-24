@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { VisaDetails } from '../visa-detail/visa-detail.model';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute,Router, Params } from '@angular/router';
-import { error } from 'protractor';
-
 
 @Component({  
   templateUrl: './add-visa.component.html'

@@ -56,9 +56,9 @@ namespace VisaTrackingSystem.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.VisaExpiryDate).HasColumnType("datetime");
+                entity.Property(e => e.VisaExpiryDate).HasColumnType("date");
 
-                entity.Property(e => e.VisaIssueDate).HasColumnType("datetime");
+                entity.Property(e => e.VisaIssueDate).HasColumnType("date");                
 
                 entity.Property(e => e.VisaStatus)
                     .HasMaxLength(8)

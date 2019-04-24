@@ -6,7 +6,7 @@ namespace VisaTrackingSystem.Models
     {
         public abstract bool AddVisa(VisaDetails visaDetails);
         public abstract bool Delete(int visaRequsitionId);
-        public abstract IEnumerable<VisaDetails> GetAllVisa();
+        public abstract List<VisaDetails> GetAllVisa();
         public abstract VisaDetails GetVisaById(int visaRequsitionId);
         public abstract bool UpdateVisa(VisaDetails visaDetails);            
 
