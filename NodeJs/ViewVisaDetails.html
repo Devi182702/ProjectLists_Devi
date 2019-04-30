@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<h1>Visa Details</h1>
+	<hr />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>	
+<body>
+<script type="text/javascript">
+	var app = angular.module('myApp',[])
+	app.controller('myController',function ($scope,$http){
+		
+		$scope.GenerateTable = function () {
+    		  $http({
+            	method: 'GET',
+           		url: 'http://localhost:64510/api/VisaDetails/Index',
+            	dataType: 'jsonp',
+            	headers: {'Accept': 'application/json'}
+        	 }).then(function(response){$scope.details = response.data;}); 
+        	 
+        };
+	});
+
+</script>
+<div ng-app="myApp" ng-controller="myController">
+	<input type="button" value="Click me!" ng-click="GenerateTable()" />
+	<br />	<br />
+	<table class='table' border="1">
+ 	<thead>
+    <tr>
+      <th>Visa Requsition Id</th>
+      <th>Employee Id</th>
+      <th>Visa For Country</th>
+      <th>Visa Issue Date</th>
+      <th>Visa Expiry Date</th>
+      <th>Visa Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  		<tr ng-repeat="visadetail in details">
+      <td>{{ visadetail.VisaRequsitionId }}</td>
+      <td>{{ visadetail.EmployeeId }}</td>
+      <td>{{ visadetail.CountryName }}</td>
+      <td>{{ visadetail.VisaIssueDate | date:'longDate'  }}</td>
+      <td>{{ visadetail.VisaExpiryDate | date:'longDate'}}</td>
+      <td>{{ visadetail.VisaStatus }}</td>      
+    </tr>
+  </tbody>
+</table>
+	
+</div>
+</body>
+</html>
