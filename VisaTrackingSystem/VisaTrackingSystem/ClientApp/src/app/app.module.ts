@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component'; */
 import { VisaDetailComponent } from './visa-detail/visa-detail.component';
 import { AddVisaComponent } from './add-visa/add-visa.component';
 import { GetVisaDetailComponent } from './get-visa-detail/get-visa-detail.component';
+import { ParcelService } from './services/parcel.service';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,11 @@ import { GetVisaDetailComponent } from './get-visa-detail/get-visa-detail.compon
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'visa-detail', component: VisaDetailComponent },
       { path: 'add-visa/:id', component: AddVisaComponent },
-      { path: 'get-visa-detail/:id', component: GetVisaDetailComponent },      
+      //{ path: 'get-visa-detail/:id', component: GetVisaDetailComponent },
+      { path: 'get-visa-detail/:id', component: GetVisaDetailComponent },  
     ])
   ],
-  providers: [],
+  providers: [ParcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

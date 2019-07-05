@@ -1,7 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { ParcelService } from '../services/parcel.service';
 
+ 
 @Component({
   selector: 'app-visa-detail',
   templateUrl: './visa-detail.component.html'
@@ -11,7 +13,7 @@ export class VisaDetailComponent {
   public httpClient: HttpClient;
   public baseUrl: string;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router : Router) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _router: Router, private parcelService: ParcelService) {
     this.httpClient = http;
     this.baseUrl = baseUrl;
     this.getVisaDetails();
@@ -22,6 +24,7 @@ export class VisaDetailComponent {
       this.visadetails = result;
     }, error => console.error(error));
   }
+
   delete(visaRequistionId) {           
     var confirmMsg = confirm("Do you want to delete the Visa Requsition ID:" + visaRequistionId);
     if (confirmMsg) {         
@@ -32,6 +35,11 @@ export class VisaDetailComponent {
         }
         , error => { alert("Was Not Able to Delete the Record.Please Contact the Help Desk."); console.error(error); })
     }
+  }
+
+  passThisGuy(obj: VisaDetails) {
+    this.parcelService.setVisaDetail(obj);
+    this._router.navigate(['get-visa-detail', obj.VisaRequsitionId]);
   }
 }
 

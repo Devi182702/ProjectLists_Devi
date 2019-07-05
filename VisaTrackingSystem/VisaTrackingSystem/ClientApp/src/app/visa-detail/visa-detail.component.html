@@ -27,7 +27,8 @@
       <td>{{ visadetail.VisaStatus }}</td>
       <td>
         <a [routerLink]="['/add-visa/', visadetail.VisaRequsitionId]">Edit</a> |
-        <a [routerLink]="['/get-visa-detail/', visadetail.VisaRequsitionId]">Details</a> |
+        <a [routerLink]="" (click)="passThisGuy(visadetail)">{{ visadetail.VisaRequsitionId }}</a> |
+        <!-- <a [routerLink]="['/get-visa-detail/', visadetail.VisaRequsitionId]">Details</a> | -->
         <a [routerLink]="" (click)="delete(visadetail.VisaRequsitionId)">Delete</a>
       </td>
     </tr>
