@@ -1,6 +1,6 @@
-<h1>Visa Detail For Requsition Id:</h1>
 
-<p *ngIf="!visaDetails"></p>
+
+<p *ngIf="!visaDetails">Visa Detail For Employee Id:{{ visaDetails.EmployeeId }}</p>
 
 <table class="table table-striped table-bordered"  *ngIf="visaDetails" >
   <tr><th>Details</th><th>Value</th></tr>

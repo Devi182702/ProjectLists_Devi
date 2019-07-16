@@ -1,0 +1,25 @@
+
+<h3>Employee Visa Record</h3>
+<hr />
+<form #form="ngForm" novalidate (submit)="onSave(form)">
+  <div>
+    <canvas baseChart
+            [chartType]="'pie'"
+            [datasets]="pieChartData"
+            [labels]="pieChartLabels"
+            [options]="pieChartOptions"
+            [legend]="true"
+            [colors]="pieChartColor"
+            (chartClick)="onChartClick($event)"></canvas>
+  </div>
+  <div>
+    <canvas baseChart
+            [chartType]="'pie'"
+            [datasets]="pieChartData2"
+            [labels]="pieChartLabels2"
+            [options]="pieChartOptions2"
+            [legend]="true"
+            [colors]="pieChartColor2"
+            (chartClick)="onChartClick($event)"></canvas>
+  </div>
+</form>
